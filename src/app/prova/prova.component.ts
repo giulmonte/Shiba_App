@@ -155,4 +155,5 @@ export class ProvaComponent implements OnInit {
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
+  
 }
