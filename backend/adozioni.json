@@ -1,0 +1,58 @@
+[
+    {
+        "nome": "Andrea",
+        "email": "andrea.c@gmail.com",
+        "shibaColor": "aka",
+        "experience": "media",
+        "notes": "Vorrei tanto adottare un adorabile Shiba Aka."
+    },
+    {
+        "nome": "Giulia",
+        "email": "giulia.montevecchi95@gmail.com",
+        "shibaColor": "nero",
+        "experience": "alta",
+        "notes": "Adoro gli Shiba."
+    },
+    {
+        "nome": "Roberto",
+        "email": "roberto100@gmail.com",
+        "shibaColor": "sesamo",
+        "experience": "media",
+        "notes": "Mi piacciono molto gli Shiba color sesamo."
+    },
+    {
+        "nome": "Ludovica",
+        "email": "ludo.cremo@gmail.com",
+        "shibaColor": "aka",
+        "experience": "nessuna",
+        "notes": "Non ho esperienza ma vorrei tanto adottare per la prima volta uno Shiba."
+    },
+    {
+        "nome": "Lorenzo",
+        "email": "lorenzo5@gmail.com",
+        "shibaColor": "aka",
+        "experience": "nessuna",
+        "notes": "Mi piacciono gli Shiba."
+    },
+    {
+        "nome": "Simone",
+        "email": "simone9@gmail.com",
+        "shibaColor": "nero",
+        "experience": "alta",
+        "notes": "Non vedo l'ora di adottare uno Shiba da questo sito."
+    },
+    {
+        "nome": "Giuliana",
+        "email": "giuliana98@gmail.com",
+        "shibaColor": "sesamo",
+        "experience": "nessuna",
+        "notes": "Non ho molta esperienza ma posso imparare."
+    },
+    {
+        "nome": "Roberto",
+        "email": "rob@gmail.com",
+        "shibaColor": "sesamo",
+        "experience": "media",
+        "notes": "Mi piacciono gli Shiba"
+    }
+]

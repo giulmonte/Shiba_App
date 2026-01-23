@@ -1,0 +1,101 @@
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.dashboard-header h2 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Tabella Stile Card */
+.table-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modern-table th {
+  background-color: #f8f9fa;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 1.2rem;
+  text-align: left;
+  border-bottom: 2px solid #eee;
+}
+
+.modern-table td {
+  padding: 1.2rem;
+  border-bottom: 1px solid #eee;
+  color: #5e3434;
+}
+
+.modern-table tr:hover {
+  background-color: #fcfcfc;
+}
+
+/* Badge (Etichette) */
+.badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Colori per Shiba */
+.color-aka { background-color: #000000; } /* Arancione */
+.color-nero { background-color: #000000; }
+.color-sesamo { background-color: #000000; }
+
+/* Colori per Esperienza */
+.exp-alta { background-color: #27ae60; }
+.exp-media { background-color: #f1c40f; color: #ffffff; }
+.exp-nessuna { background-color: #e74c3c; }
+
+/* Testo Note */
+.notes-cell {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: italic;
+  color: #95a5a6;
+}
+
+/* Bottoni */
+.actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-refresh, .btn-back {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+}
+
+.btn-refresh { background: #db3434; color: white; }
+.btn-back { background: #ecf0f1; color: #7f8c8d; }
+.btn-refresh:hover { background: #b92929; }

@@ -1,0 +1,14 @@
+<header class="navbar">
+  <div class="logo">
+    <a [routerLink]="['/']">Shiba-App</a>
+  </div>
+  <nav>
+    <ul>
+      <li><a [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a [routerLink]="['/prova']" routerLinkActive="active-link">Shiba-Cards</a></li>
+      <li><a [routerLink]="['/adozione']" routerLinkActive="active-link">Adozione</a></li> 
+      <li><a [routerLink]="['/dashboard']" routerLinkActive="active-link">Dashboard</a></li> 
+    </ul>
+  </nav>
+  <a class="cta-button" [routerLink]="['/adozione']">Inizia Ora</a>
+</header>

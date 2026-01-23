@@ -1,0 +1,106 @@
+<div class="page-wrapper">
+
+  <mat-card class="add-shiba-card-modern">
+    <div class="card-accent-bar"></div>
+    <mat-card-header>
+      <mat-card-title>🐾 Aggiungi un nuovo amico</mat-card-title>
+      <mat-card-subtitle>Inserisci i dettagli e carica una foto</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content class="form-body">
+      <div class="upload-container">
+        <label class="custom-file-upload">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*">
+          <span>{{ selectedFile ? '✅ ' + selectedFile.name : '📁 Seleziona Immagine' }}</span>
+        </label>
+      </div>
+
+      <div class="input-row">
+        <div class="field-group">
+          <label>Titolo</label>
+          <input type="text" placeholder="es. Shiba Gigante" [(ngModel)]="newShiba.title">
+        </div>
+        <div class="field-group">
+          <label>Sottotitolo</label>
+          <input type="text" placeholder="es. Varietà Sesamo" [(ngModel)]="newShiba.subtitle">
+        </div>
+      </div>
+      
+      <div class="field-group">
+        <label>Descrizione</label>
+        <textarea placeholder="Raccontaci qualcosa..." [(ngModel)]="newShiba.description" rows="4"></textarea>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="form-actions">
+    <button mat-flat-button class="btn-save btn-save-red" (click)="addShiba()" [disabled]="loadingAnalysis">
+    <span *ngIf="!loadingAnalysis">SALVA CARD</span>
+    <span *ngIf="loadingAnalysis">ANALISI IN CORSO...</span>
+    </button>
+</mat-card-actions>
+  </mat-card>
+  
+
+  <h2 class="main-title">📚 Shiba_Cards</h2>
+  
+  <div class="shiba-grid-container"> 
+    <mat-card *ngFor="let shiba of shibas; let i = index" class="shiba-card-refined">
+      <mat-card-header>
+        <mat-card-title>{{ shiba.title }}</mat-card-title>
+        <mat-card-subtitle>{{ shiba.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      
+      <img *ngIf="shiba.image" mat-card-image [src]="shiba.image" class="card-img">
+      
+      <mat-card-content class="card-inner-content">
+        <p class="description-text">{{ shiba.description }}</p>
+        
+        <div class="comment-section">
+          <b class="label-small">Commenti</b>
+          <div class="comment-list">
+            <div *ngFor="let c of shiba.comments" class="comment-item">• {{ c }}</div>
+            <p *ngIf="shiba.comments.length === 0" class="no-comments">Nessun commento.</p>
+          </div>
+          
+          <div class="comment-input-box">
+            <input type="text" [(ngModel)]="commentInputs[i]" placeholder="Scrivi..." (keyup.enter)="addComment(i)">
+            <button mat-icon-button (click)="addComment(i)">➤</button>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="card-footer">
+        <div class="vote-buttons">
+          <button mat-button (click)="vote(i, 'like')" class="btn-like">👍 {{ shiba.likes || 0 }}</button>
+          <button mat-button (click)="vote(i, 'dislike')" class="btn-dislike">👎 {{ shiba.dislikes || 0 }}</button>
+        </div>
+        <button mat-icon-button color="warn" (click)="deleteShiba(i)">🗑️</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="ai-panel-footer">
+    <div class="ai-content-split">
+      <div>
+        <h3>GENERAZIONE AI 🤖</h3>
+        <p *ngIf="analysisMessage" class="ai-status-msg">{{ analysisMessage }}</p>
+      </div>
+      <div class="ai-buttons">
+      <button mat-raised-button color="warn" (click)="generateAllComments()" [disabled]="loadingAnalysis"> 
+        POPOLA COMMENTI 
+      </button>
+      <button mat-flat-button class="btn-review-highlight" (click)="getGeneralReview()"> 
+        RECENSIONE SITO 
+      </button>
+  </div> 
+
+  <div *ngIf="latestReview" class="review-report-box">
+    <div class="report-header">
+      <span>📊 REPORT </span>
+      <span class="report-date">{{ latestReview.data_generazione }}</span>
+    </div>
+    <div class="report-body">
+      <p>"{{ latestReview.recensione_ia }}"</p>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,148 @@
+.page-wrapper {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.add-shiba-card-modern {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    border-radius: 15px !important;
+    overflow: hidden;
+}
+
+.card-accent-bar {
+    height: 8px;
+    background: #502c2c;
+}
+
+.form-body {
+    padding: 30px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-group label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #502c2c;
+    text-transform: uppercase;
+}
+
+.field-group input, .field-group textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.upload-container {
+    background: #fafafa;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.custom-file-upload { cursor: pointer; display: block; }
+.custom-file-upload input { display: none; }
+
+.shiba-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px;
+    justify-items: center;
+}
+
+.shiba-card-refined {
+    width: 100%; 
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img { height: 200px; object-fit: cover; }
+
+.main-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 800;
+    color: #502c2c;
+}
+
+.ai-panel-footer {
+    margin-top: 80px;
+    background: #502c2c;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.ai-content-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-status-msg { color: #ffab91; font-family: monospace; margin-top: 10px; }
+
+.vote-buttons { display: flex; gap: 5px; }
+.btn-like { color: #2e7d32; }
+.btn-dislike { color: #c62828; }
+
+@media (max-width: 992px) {
+    .shiba-grid-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .shiba-grid-container { grid-template-columns: 1fr; }
+    .input-row { grid-template-columns: 1fr; }
+}
+
+.btn-save-red {
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%) !important;
+    color: white !important;
+    font-weight: 900 !important;
+    letter-spacing: 2px !important;
+    padding: 15px 50px !important;
+    border-radius: 50px !important; 
+    box-shadow: 0 6px 20px rgba(183, 28, 28, 0.4) !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    border: none !important;
+    width: auto !important;
+    min-width: 200px;
+    cursor: pointer;
+}
+
+.btn-save-red:hover:not(:disabled) {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(183, 28, 28, 0.5) !important;
+    filter: brightness(1.2);
+}
+
+.btn-save-red:active:not(:disabled) {
+    transform: translateY(-1px) scale(1.01);
+}
+
+.btn-save-red:disabled {
+    background: #ccc !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+}
+
+.form-actions {
+    justify-content: center !important;
+    padding-bottom: 25px !important;
+}

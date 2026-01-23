@@ -1,0 +1,24 @@
+.contact-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  padding: 50px 20px;
+  min-height: 70vh;
+  background-color: #f0f2f5; 
+}
+
+.contact-card {
+  max-width: 600px;
+  width: 100%;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+button[mat-raised-button] {
+  width: 100%;
+}
