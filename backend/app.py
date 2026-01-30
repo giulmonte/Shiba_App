@@ -11,7 +11,7 @@ CORS(app)
 CARDS_FILE = 'cards.json'
 DATA_FILE = 'adozioni.json'
 
-# --- FUNZIONI DI SUPPORTO ---
+#FUNZIONI DI SUPPORTO
 def carica_cards():
     if os.path.exists(CARDS_FILE):
         with open(CARDS_FILE, 'r', encoding='utf-8') as f:
@@ -36,7 +36,7 @@ def salva_su_file(dati):
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(dati, f, indent=4, ensure_ascii=False)
 
-# --- ROTTE STANDARD ---
+#ROTTE STANDARD
 @app.route('/api/checkStatus', methods=['GET'])
 def check_status():
     return jsonify({"stato": "OK"}), 200
@@ -50,14 +50,14 @@ def save_cards_api():
     salva_cards(request.json)
     return jsonify({"message": "OK"}), 201
 
-# --- INTELLIGENZA ARTIFICIALE (OLLAMA) ---
+#AI (OLLAMA)
 @app.route('/api/ai/populate-existing', methods=['POST'])
 def populate_existing_comments():
     cards = carica_cards()
     count = 0
     print("--- INIZIO GENERAZIONE COMMENTI ---")
     for card in cards:
-        prompt = f"Scrivi un commento divertente e brevissimo (max 10 parole) per uno Shiba Inu chiamato {card.get('title')}."
+        prompt = f"Scrivi un commento appassionato e breve (max 10 parole) per uno Shiba Inu chiamato {card.get('title')}."
         try:
             response = requests.post('http://localhost:11434/api/chat', 
                 json={"model": "llama3", "messages": [{"role": "user", "content": prompt}], "stream": False}, 
@@ -81,7 +81,7 @@ def site_review():
         adozioni = carica_da_file()
         likes_totali = sum(c.get('likes', 0) for c in cards)
         
-        prompt = f"Analizza: {len(cards)} card, {len(adozioni)} adozioni, {likes_totali} like. Scrivi una recensione professionale di max 40 parole."
+        prompt = f"Analizza: {len(cards)} card, {len(adozioni)} adozioni, {likes_totali} like. Scrivi una recensione di max 40 parole relativa alla razza più amata del Giappone, lo Shiba Inu. Aggiungi che le cards, adozioni e likes sono apprezzati dalla community. Scrivi anche della bellezza delle razze presenti nel sito (in italiano)."
         
         print("Generazione recensione sito in corso...")
         response = requests.post('http://localhost:11434/api/chat', 
@@ -102,7 +102,43 @@ def site_review():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# --- ANALISI IMMAGINE ---
+#RECENSIONE SPECIFICA PER RAZZA
+@app.route('/api/ai/breed-review/<breed>', methods=['GET'])
+def breed_review(breed):
+    try:
+        cards = carica_cards()
+        cards_filtrate = [c for c in cards if c.get('breed') == breed]
+        
+        num_cards = len(cards_filtrate)
+        likes_razza = sum(c.get('likes', 0) for c in cards_filtrate)
+        nomi_shiba = ", ".join([c.get('title') for c in cards_filtrate]) if cards_filtrate else "nessuno"
+
+        prompt = (f"Analisi specifica per la variante Shiba Inu: {breed}. "
+                  f"Nel database abbiamo {num_cards} esemplari con un totale di {likes_razza} mi piace. "
+                  f"Esemplari presenti: {nomi_shiba}. "
+                  f"Scrivi una recensione appassionata e accattivante di max 40 parole su questa specifica varietà (in italiano).")
+        
+        print(f"Generazione recensione per la razza {breed} in corso...")
+        response = requests.post('http://localhost:11434/api/chat', 
+            json={"model": "llama3", "messages": [{"role": "user", "content": prompt}], "stream": False}, 
+            timeout=60)
+        
+        if response.status_code == 200:
+            testo = response.json().get('message', {}).get('content', '').strip()
+            report = {
+                "razza": breed,
+                "data_generazione": time.strftime("%Y-%m-%d %H:%M:%S"), 
+                "statistiche": {"esemplari": num_cards, "likes": likes_razza}, 
+                "recensione_ia": testo
+            }
+            return jsonify(report), 200
+        
+        return jsonify({"error": "Ollama Error"}), 500
+    except Exception as e:
+        print(f"Errore durante la recensione di razza: {e}")
+        return jsonify({"error": str(e)}), 500
+
+#ANALISI IMMAGINE
 @app.route('/api/analyzeImage', methods=['POST'])
 def analyze_image():
     try:
@@ -118,7 +154,7 @@ def analyze_image():
         print(f"Errore durante l'analisi: {e}")
         return jsonify({"error": str(e)}), 500
 
-# --- ROTTE ADOZIONI ---
+#ROTTE ADOZIONI
 @app.route('/api/adozioni', methods=['POST'])
 def salva_adozione():
     dati = carica_da_file()

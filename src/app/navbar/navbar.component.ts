@@ -13,7 +13,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       <nav>
         <ul>
           <li><a [routerLink]="['/']" [routerLinkActive]="'active-link'">Home</a></li>
-          <li><a [routerLink]="['/prova']" [routerLinkActive]="'active-link'">Shiba-Cards</a></li>
+          <li><a [routerLink]="['/prova']" [routerLinkActive]="'active-link'">Razze</a></li>
           <li><a [routerLink]="['/adozione']" [routerLinkActive]="'active-link'">Adotta</a></li> 
           <li><a [routerLink]="['/dashboard']" [routerLinkActive]="'active-link'">Le Nostre Adozioni</a></li> 
         </ul>

@@ -1,0 +1,110 @@
+<div class="page-wrapper">
+  <h1 class="main-title">Categoria: Shiba {{ currentBreed | uppercase }}</h1>
+  
+  <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+    <button mat-stroked-button color="warn" [routerLink]="['/prova']" style="border-radius: 10px;">
+      ⬅ Torna alla selezione
+    </button>
+  </div>
+
+  <mat-card class="add-shiba-card-modern">
+    <div class="card-accent-bar"></div>
+    <mat-card-header>
+      <mat-card-title>🐾 Aggiungi un nuovo amico ({{ currentBreed }})</mat-card-title>
+      <mat-card-subtitle>Inserisci i dettagli e carica una foto</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content class="form-body">
+      <div class="upload-container">
+        <label class="custom-file-upload">
+          <input type="file" (change)="onFileSelected($event)" accept="image/*">
+          <span>{{ selectedFile ? '✅ ' + selectedFile.name : '📁 Seleziona Immagine' }}</span>
+        </label>
+      </div>
+
+      <div class="input-row">
+        <div class="field-group">
+          <label>Titolo</label>
+          <input type="text" placeholder="es. Shiba Gigante" [(ngModel)]="newShiba.title">
+        </div>
+        <div class="field-group">
+          <label>Sottotitolo</label>
+          <input type="text" placeholder="es. Varietà {{ currentBreed }}" [(ngModel)]="newShiba.subtitle">
+        </div>
+      </div>
+      
+      <div class="field-group">
+        <label>Descrizione</label>
+        <textarea placeholder="Raccontaci qualcosa..." [(ngModel)]="newShiba.description" rows="4"></textarea>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="form-actions">
+      <button mat-flat-button class="btn-save-red" (click)="addShiba()" [disabled]="loadingAnalysis">
+        <span *ngIf="!loadingAnalysis">SALVA CARD</span>
+        <span *ngIf="loadingAnalysis">ANALISI IN CORSO...</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="shiba-grid-container"> 
+    <mat-card *ngFor="let shiba of shibas; let i = index" class="shiba-card-refined">
+      <mat-card-header>
+        <mat-card-title>{{ shiba.title }}</mat-card-title>
+        <mat-card-subtitle>{{ shiba.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      
+      <img *ngIf="shiba.image" mat-card-image [src]="shiba.image" class="card-img">
+      
+      <mat-card-content class="card-inner-content">
+        <p class="description-text" style="margin-top: 15px;">{{ shiba.description }}</p>
+        <div class="comment-section">
+          <b style="font-size: 0.75rem; color: #888; text-transform: uppercase;">Commenti</b>
+          <div class="comment-list" style="max-height: 120px; overflow-y: auto; margin: 8px 0;">
+            <div *ngFor="let c of shiba.comments" class="comment-item" style="font-size: 0.85rem; padding: 5px 0; border-bottom: 1px solid #eee;">
+              • {{ c }}
+            </div>
+            <p *ngIf="shiba.comments.length === 0" style="font-size: 0.8rem; color: #999; font-style: italic;">Nessun commento.</p>
+          </div>
+          <div class="comment-input-box">
+            <input type="text" [(ngModel)]="commentInputs[i]" placeholder="Commenta..." (keyup.enter)="addComment(i)">
+            <button mat-icon-button (click)="addComment(i)">➤</button>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="card-footer" style="justify-content: space-between; padding: 8px 16px; border-top: 1px solid #f0f0f0;">
+        <div class="vote-buttons">
+          <button mat-button (click)="vote(i, 'like')" style="color: #2e7d32;">👍 {{ shiba.likes || 0 }}</button>
+          <button mat-button (click)="vote(i, 'dislike')" style="color: #c62828;">👎 {{ shiba.dislikes || 0 }}</button>
+        </div>
+        <button mat-icon-button color="warn" (click)="deleteShiba(i)">🗑️</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="ai-panel-footer">
+    <div class="ai-content-split">
+      <div class="ai-text">
+        <h3>Report Razza {{ currentBreed | titlecase }} 🤖</h3>
+        <p class="ai-status-msg" *ngIf="analysisMessage">{{ analysisMessage }}</p>
+        <p class="ai-hint" *ngIf="!analysisMessage">Analisi AI basata sulle card di questa categoria.</p>
+      </div>
+      <div class="ai-buttons">
+        <button mat-flat-button class="btn-review-highlight" (click)="getBreedReview()" [disabled]="loadingAnalysis"> 
+          GENERA ANALISI {{ currentBreed | uppercase }} 
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="breedReview" class="review-report-box">
+      <div class="report-header">
+        <span class="report-tag">BREED INSIGHTS</span>
+        <span class="report-date">{{ breedReview.data_generazione }}</span>
+      </div>
+      <div class="report-body">
+        <p class="ia-text">"{{ breedReview.recensione_ia }}"</p>
+      </div>
+    </div>
+  </div>
+</div>

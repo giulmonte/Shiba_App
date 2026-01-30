@@ -54,5 +54,26 @@
         "shibaColor": "sesamo",
         "experience": "media",
         "notes": "Mi piacciono gli Shiba"
+    },
+    {
+        "nome": "Signora Annalisa",
+        "email": "anna89@gmail.com",
+        "shibaColor": "sesamo",
+        "experience": "media",
+        "notes": "Adoro questa razza, e ne vorrei tanto uno!"
+    },
+    {
+        "nome": "Davide Riccardi",
+        "email": "davidric@gmail.com",
+        "shibaColor": "sesamo",
+        "experience": "nessuna",
+        "notes": "Adoro gli animali e vorrei tanto uno Shiba Inu tutto mio!"
+    },
+    {
+        "nome": "Giulia Monti",
+        "email": "giulmonte95@gmail.com",
+        "shibaColor": "nero",
+        "experience": "alta",
+        "notes": "Ho già avuto molta esperienza con la razza, adesso vorrei un nuovo cucciolo! "
     }
 ]

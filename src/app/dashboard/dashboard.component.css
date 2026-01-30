@@ -1,101 +1,169 @@
-.dashboard-container {
-  padding: 2rem;
-  max-width: 1000px;
+:host {
+  font-family: 'Inter', -apple-system, sans-serif;
+  --bordeaux: #502c2c;
+  --red-shiba: #a72828;
+  display: block;
+  min-height: 100vh;
+  background: #fdfdfd;
+}
+
+.dashboard-wrapper {
+  padding: 80px 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Header */
 .dashboard-header {
-  margin-bottom: 2rem;
   text-align: center;
+  margin-bottom: 60px;
 }
 
-.dashboard-header h2 {
-  color: #2c3e50;
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+.badge-new {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(167, 40, 40, 0.1);
+  color: var(--red-shiba);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 
-/* Tabella Stile Card */
-.table-card {
+.main-title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--red-shiba), #ff4d4d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Tabella Card Modern */
+.table-container-modern {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
   overflow: hidden;
+  margin-bottom: 40px;
 }
 
-.modern-table {
+.premium-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.modern-table th {
-  background-color: #f8f9fa;
-  color: #7f8c8d;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  padding: 1.2rem;
+.premium-table th {
+  background: #fafafa;
+  padding: 20px 25px;
   text-align: left;
-  border-bottom: 2px solid #eee;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #888;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.modern-table td {
-  padding: 1.2rem;
-  border-bottom: 1px solid #eee;
-  color: #5e3434;
+.premium-table td {
+  padding: 20px 25px;
+  border-bottom: 1px solid #f8f8f8;
+  color: #444;
+  vertical-align: middle;
 }
 
-.modern-table tr:hover {
-  background-color: #fcfcfc;
-}
+.premium-table tr:last-child td { border-bottom: none; }
+.premium-table tr:hover { background: #fffafb; }
 
-/* Badge (Etichette) */
-.badge {
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: bold;
+/* Badge & Dots */
+.badge-modern {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 900;
   color: white;
+  display: inline-block;
 }
 
-/* Colori per Shiba */
-.color-aka { background-color: #000000; } /* Arancione */
-.color-nero { background-color: #000000; }
-.color-sesamo { background-color: #000000; }
+.color-aka { background: #e67e22; box-shadow: 0 4px 10px rgba(230, 126, 34, 0.2); }
+.color-nero { background: #2c3e50; box-shadow: 0 4px 10px rgba(44, 62, 80, 0.2); }
+.color-sesamo { background: #7f8c8d; box-shadow: 0 4px 10px rgba(127, 140, 141, 0.2); }
 
-/* Colori per Esperienza */
-.exp-alta { background-color: #27ae60; }
-.exp-media { background-color: #f1c40f; color: #ffffff; }
-.exp-nessuna { background-color: #e74c3c; }
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
 
-/* Testo Note */
+.exp-alta { background: #27ae60; }
+.exp-media { background: #f1c40f; }
+.exp-nessuna { background: #e74c3c; }
+
+.exp-text { font-size: 0.9rem; font-weight: 500; }
+
+/* Note */
+.note-content {
+  font-style: italic;
+  color: #888;
+  font-size: 0.9rem;
+}
+
 .notes-cell {
-  max-width: 200px;
+  max-width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-style: italic;
-  color: #95a5a6;
 }
 
-/* Bottoni */
+/* Bottoni Moderni (Uguali alla Home) */
 .actions {
-  margin-top: 2rem;
   display: flex;
-  gap: 1rem;
   justify-content: center;
+  gap: 15px;
 }
 
-.btn-refresh, .btn-back {
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
+.btn-modern {
+  padding: 15px 35px;
+  border-radius: 15px;
+  font-weight: 700;
   text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
 }
 
-.btn-refresh { background: #db3434; color: white; }
-.btn-back { background: #ecf0f1; color: #7f8c8d; }
-.btn-refresh:hover { background: #b92929; }
+.btn-red {
+  background: var(--red-shiba);
+  color: white;
+  box-shadow: 0 10px 20px rgba(167, 40, 40, 0.3);
+}
+
+.btn-outline {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.btn-modern:hover {
+  transform: translateY(-5px);
+  filter: brightness(1.1);
+}
+
+.empty-state {
+  padding: 60px !important;
+  text-align: center;
+  color: #bbb;
+  font-size: 1.1rem;
+}
